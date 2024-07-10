@@ -12,13 +12,14 @@ function isValidSudoku(board) {
             }
         });
     });
-    console.log("indexkeeper: " + indexKeeper);
-    console.log("quadrantkeeper: " + quadrantKeeper);
+    console.log("indexkeeper: " + JSON.stringify(indexKeeper));
+    console.log("quadrantkeeper: " + JSON.stringify(quadrantKeeper));
     return true;
 }
 ;
 function quadrantKeeping(indexTupel, item, quadrants) {
     let quadrant = mapToQuadrants(indexTupel);
+    console.log(`tuple: ${indexTupel} and quadrant: ${quadrant}`);
     if (quadrant in quadrants) {
         if (quadrants[quadrant].filter(x => x === item).length === 0) {
             quadrants[quadrant].push(item);
@@ -34,9 +35,10 @@ function quadrantKeeping(indexTupel, item, quadrants) {
     }
 }
 function indexKeeping(item, map) {
-    let modes = ['r', 'col'];
+    let modes = ['row', 'col'];
     for (let mode in modes) {
-        let key = item + mode;
+        let key = `${item}${mode}`;
+        console.log("key: " + key);
         if (key in map) {
             if (map[key].filter(x => x === item).length === 0) {
                 map.key.push(item);
