@@ -1,4 +1,4 @@
-function isValidSudoku(board: string[][]): boolean {
+function isValidSudoku3(board: string[][]): boolean {
     
     let indexKeeper : {[key : string]: number []} = {};
     let quadrantKeeper : {[key : number]: number []} = {};

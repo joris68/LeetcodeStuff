@@ -1,5 +1,5 @@
 "use strict";
-function isValidSudoku(board) {
+function isValidSudoku3(board) {
     let indexKeeper = {};
     let quadrantKeeper = {};
     board.forEach((item, index) => {
