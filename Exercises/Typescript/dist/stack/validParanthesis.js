@@ -1,25 +1,32 @@
 "use strict";
 function isValid(s) {
-    let hash = createHash();
-    let tempStore;
-    for (let i = 0; i < s.length; i++) {
-        if (!tempStore) {
-            tempStore = hash.get(s[i]);
-            continue;
+    // the case where they are not valid
+    if (s.length % 2 !== 0)
+        return false;
+    const map_counterpart = {
+        '}': '{',
+        ')': '(',
+        ']': '['
+    };
+    let stack = [];
+    let chars = s.split('');
+    for (let i = 0; i < chars.length; i++) {
+        let element = chars[i];
+        if (element in map_counterpart) {
+            let pop = stack.pop();
+            if (pop === map_counterpart[element]) {
+                continue;
+            }
+            else {
+                return false;
+            }
         }
-        if (tempStore !== s[i])
-            return false;
-        tempStore = s[i + 1];
+        else {
+            stack.push(element);
+        }
     }
+    if (stack.length > 0)
+        return false;
     return true;
 }
 ;
-function createHash() {
-    let map = new Map();
-    map.set('(', ')');
-    map.set('{', '}');
-    map.set('[', ']');
-    return map;
-}
-let test8 = "()[]{}";
-console.log(isValid(test8));
