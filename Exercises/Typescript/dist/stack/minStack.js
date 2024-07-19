@@ -1,40 +1,32 @@
+"use strict";
 class MinStack {
-    stack: number[];
-    minstack: number[];
-
     constructor() {
         this.stack = [];
         this.minstack = [];
     }
-
-    push(val: number): void {
+    push(val) {
         this.stack.push(val);
-        if (
-            val < this.minstack[this.minstack.length - 1] ||
-            this.minstack.length === 0
-        ) {
+        if (val < this.minstack[this.minstack.length - 1] ||
+            this.minstack.length === 0) {
             this.minstack.push(val);
-        } else {
+        }
+        else {
             this.minstack.push(this.minstack[this.minstack.length - 1]);
         }
-        console.log(this.stack)
-        console.log(this.minstack)
+        console.log(this.stack);
+        console.log(this.minstack);
     }
-
-    pop(): void {
+    pop() {
         this.stack.pop();
         this.minstack.pop();
     }
-
-    top(): number {
+    top() {
         return this.stack[this.stack.length - 1];
     }
-
-    getMin(): number {
+    getMin() {
         return this.minstack[this.minstack.length - 1];
     }
 }
-
 /**
  * Your MinStack object will be instantiated and called as such:
  * var obj = new MinStack()
@@ -43,7 +35,6 @@ class MinStack {
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
-
 const minStack = new MinStack();
 minStack.push(-2);
 minStack.push(0);

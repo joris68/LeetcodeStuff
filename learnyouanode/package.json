@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "bl": "^6.0.14",
     "learnyounode": "^4.2.2"
   },
   "devDependencies": {
