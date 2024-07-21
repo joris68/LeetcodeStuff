@@ -3,7 +3,7 @@ function evalRPN(tokens) {
     let termStack = [];
     let operands = createOperands();
     for (let i = 0; i < tokens.length; i++) {
-        console.log(`Stack before: ${termStack}`);
+        //console.log(`Stack before: ${termStack}`);
         let ele;
         if (tokens[i] in operands) {
             ele = tokens[i];
@@ -20,15 +20,15 @@ function evalRPN(tokens) {
                     termStack.push(second * first);
                     break;
                 case "/":
-                    termStack.push(Math.floor(second / first));
+                    termStack.push(Math.trunc(second / first));
                     break;
             }
-            console.log(`Stack after Operation: ${termStack}`);
+            //console.log(`Stack after Operation: ${termStack}`);
         }
         else {
             ele = Number(tokens[i]);
             termStack.push(ele);
-            console.log(`Stack after pushing: ${termStack}`);
+            // console.log(`Stack after pushing: ${termStack}`);
         }
     }
     // should return the last element
@@ -44,5 +44,5 @@ function createOperands() {
     };
     return operands;
 }
-let test123 = ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"];
-evalRPN(test123);
+//let test123 : string [] = ["10","6","9","3","+","-11","*","/","*","17","+","5","+"];
+//evalRPN(test123);
