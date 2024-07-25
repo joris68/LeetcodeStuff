@@ -1,31 +1,25 @@
 "use strict";
 function generateParenthesis(n) {
+    let stack = [];
     let result = [];
-    let initialStartString = '(';
-    return backtracking(initialStartString, n, n, 1, 0, result);
-}
-;
-function backtracking(startString, openLimit, closedLimit, openCounter, closedCounter, result) {
-    if (closedCounter < openCounter && closedCounter < closedLimit && openCounter < openLimit) {
-        let rand = Math.random();
-        if (rand >= 0.5) {
-            startString += "(";
-            backtracking(startString, openLimit, closedLimit, openCounter + 1, closedCounter, result);
+    function backtracking(openC, closedC) {
+        if (openC === n && closedC === n) {
+            result.push(stack.join(''));
+            return;
         }
-        else {
-            startString += ")";
-            backtracking(startString, openLimit, closedLimit, openCounter, closedCounter + 1, result);
+        if (openC < n) {
+            // add opening paranthesis
+            stack.push("(");
+            backtracking(openC + 1, closedC);
+            stack.pop();
+        }
+        if (closedC < openC) {
+            stack.push(")");
+            backtracking(openC, closedC + 1);
+            stack.pop();
         }
     }
-    else if (closedCounter === openCounter && closedCounter < closedLimit && openCounter < openLimit) {
-        // just add a 
-        startString += "(";
-        backtracking(startString, openLimit, closedLimit, openCounter + 1, closedCounter, result);
-    }
-    else {
-        // here we are at a leaf ==> add to result array
-        result.push(startString);
-    }
+    backtracking(0, 0);
     return result;
 }
-console.log(generateParenthesis(3));
+;
