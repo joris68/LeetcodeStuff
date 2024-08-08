@@ -1,10 +1,23 @@
 "use strict";
 function searchMatrix(matrix, target) {
-    let row = 0;
-    let found = false;
-    while (target <= matrix[row][matrix[row].length] && !found) {
-        row += 1;
-        found = true;
+    // binary search for 2D matrix
+    let first = 0;
+    let second = matrix.length;
+    let row = undefined;
+    while (first < second) {
+        let mid = Math.floor((first + second) / 2);
+        if (target >= matrix[mid][0] && target <= matrix[mid][matrix[mid].length - 1]) {
+            row = mid;
+        }
+        else if (target >= matrix[mid][matrix[mid].length - 1]) {
+            first = mid + 1;
+        }
+        else {
+            second = mid - 1;
+        }
+    }
+    if (!row) {
+        return false;
     }
     // binary search with the specified row
     const toSearch = matrix[row];
