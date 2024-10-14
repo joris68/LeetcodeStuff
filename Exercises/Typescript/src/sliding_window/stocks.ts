@@ -22,12 +22,11 @@ function maxProfit(prices : number[]) {
     while(right < prices.length){
         if (prices[right] <= prices[left]){
             left += 1;
-            right += 1;
         }else {
             let profit = prices[right] - prices[left];
             maxProfit = Math.max(profit, maxProfit);
-            right += 1;
         }
+        right += 1;
     }
     return maxProfit;
 }
