@@ -10,7 +10,6 @@ class Node {
 
 class LRUCache {
     private cache;
-
     constructor(capacity: number) {
         this.capacity = capacity;
         this.cache = {};
