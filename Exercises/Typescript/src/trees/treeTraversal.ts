@@ -13,7 +13,7 @@ function maxDepth(root: TreeNode | null): number {
 
 // breadt first search
 function maxDepth(root: TreeNode | null) : number {
-    
+     if(!root) return 0;
      let counter = 0
      const q : TreeNode [] = [root]
 
@@ -31,4 +31,23 @@ function maxDepth(root: TreeNode | null) : number {
      }
 
      return counter;
+}
+
+// solution with iterative DFS
+function maxDepth(root: TreeNode | null) : number{
+     if(!root) return 0;
+
+     const stack  = [[root, 1]];
+     let res = 1;
+
+     while (stack.length > 0){
+          let node, depth = stack.pop();
+          if (node){
+               res = Math.max(res, depth);
+               stack.push([node.left, depth +1]);
+               stack.push([node.right, depth +1]);
+          }
+     }
+     return res;
+
 }
